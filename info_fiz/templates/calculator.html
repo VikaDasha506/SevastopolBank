@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}Потребительский кредит{% endblock %}
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--подключили библиотеку jquery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% comment %}{% endcomment %}
+
+{% block content %}
+<div class="container">
+<form action="{% url 'user:calculator' %}" method="post" id="loan-form">
+	{% csrf_token %}
+<h1 style="color:rgb(0, 66, 128);">Кредитный калькулятор</h1>
+<!-- Форма кредитного калькулятора -->
+ <table class="raiting-table light-padding fw-light">
+     <tbody>
+		<tr>
+		  <td width="40%">
+			<p>Выберите продукт:</p>
+		  </td>
+          <td width="30%">
+            <select id="productSelect" class="Validate_Required form-text border border-2 rounded w-100 p-3"  name="productSelect" aria-required="true" onChange="Selected(this)" >
+              <option value="" selected="selected">Выберете продукт</option>
+              <option value="Потребительский кредит">Потребительский кредит</option>
+              <option value="Семейная ипотека">Семейная ипотека</option>
+              <option value="Военная ипотека (с господдержкой)">Военная ипотека (с господдержкой)</option>
+              <option value="Ипотека с господдержкой">Ипотека с господдержкой</option>
+              <option value="IT-ипотека">IT-ипотека</option>
+            </select><br>
+		  </td>
+		</tr>
+	</tbody>
+    <tbody>
+		<tr>
+			<td width="40%" style="border-image: initial;" >
+				<p>Процентная ставка (%):</p>
+			</td>
+			<td width="30%">
+				<input class="border border-2 rounded rounded w-25 p-2" style="font-size: 14px;"  type="text" id="interest-rate">%
+			</td>
+		</tr>
+	</tbody>
+    <tbody>
+		<tr>
+			<td width="40%" style="border-image: initial;">
+				<p>Сумма кредита:</p>
+			</td>
+			<td width="30%" style="border-image: initial;">
+				<input class="border border-2 rounded w-50 p-2" style="font-size: 14px;"  type="text" id="loan-amount" placeholder="100 000 -5 000 000">
+			</td>
+		</tr>
+	</tbody>
+    <tbody>
+		<tr>
+			<td width="40%" style="border-image: initial;">
+				<p>Срок кредита (в месяцах):</p>
+			</td>
+			<td width="51%" style="border-image: initial;">
+				<input class="border border-2 rounded rounded w-50 p-2" style="font-size: 14px;"  type="text" id="loan-term" placeholder="18-60">месяцев
+			</td>
+		</tr>
+	</tbody>
+ </table>
+     <input class="border border-2 rounded"  type="submit" style="margin-left: 497px;" value="Рассчитать">
+</form>
+    <div class="container border border-2 rounded" style= "background-color:rgb(255, 255, 255);width: 700px">
+       <div id="results" class="result "></div>
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+<script>
+// Получение ссылок на HTML-элементы с помощью их идентификаторов
+function Selected(a) {
+      var product = a.value;
+      if (product === 'Потребительский кредит') {
+        document.getElementById("interest-rate").value = 20;
+      } else if (product === 'Семейная ипотека') {
+        document.getElementById("interest-rate").value = 6;
+      } else if (product === 'Военная ипотека (с господдержкой)') {
+        document.getElementById("interest-rate").value = 8;
+      }else if (product === 'Ипотека с господдержкой') {
+        document.getElementById("interest-rate").value = 8;
+      }else if (product === 'IT-ипотека') {
+        document.getElementById("interest-rate").value = 5;
+      }
+    }
+    document.getElementById("loan-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var amount = document.getElementById("loan-amount").value; //сумма кредита
+      var term = document.getElementById("loan-term").value;//срок
+      var interestRate = document.getElementById("interest-rate").value;//ставка
+      // Сохраняем данные в sessionStorage
+      sessionStorage.setItem('amount', amount);
+      sessionStorage.setItem('term', term);
+      sessionStorage.setItem('interestRate', interestRate);
+
+      // Рассчитать ежемесячный платеж
+      var monthlyPayment = ((amount * interestRate / 100 / 12) * (1 + (interestRate / 100 / 12)) ** term / ((1 + (interestRate / 100 / 12)) ** term - 1)).toFixed(0);
+      // Рассчитываем общую сумму платежа
+      var totalPayment = (monthlyPayment * term).toFixed(0);
+      // Рассчитаем сумму переплат
+      var totalInterest = (totalPayment - amount).toFixed(0);
+
+      // Сохраняем результаты в sessionStorage
+      sessionStorage.setItem('monthlyPayment', monthlyPayment);
+      sessionStorage.setItem('totalPayment', totalPayment);
+      sessionStorage.setItem('totalInterest', totalInterest);
+
+      // Перенаправляем на страницу result.html
+      window.location.href = '{% url 'user:result' %}';
+
+     // Обновляем раздел результатов
+      document.getElementById("results").innerHTML = html;
+
+
+});
+
+
+</script>
+{% endblock %}
+<div><button class="border border-2 rounded"  type="submit" style="margin-left: 497px;" value="Рассчитать">Рассчитать></button></div>
+
+// Подготовка данных для отправки на сервер
+  const csrftoken = getCookie('csrftoken'); // Получение токена CSRF
+  fetch('/user/preview_ajax/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRFToken': csrftoken // Убедитесь, что здесь используется переменная, а не строка 'csrftoken'
+  },
+  body: JSON.stringify(formData)
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Сетевая ошибка при отправке данных');
+  }
+  return response.json();
+})
+.then(data => {
+  // Обработка ответа от сервера
+  console.log('Успех:', data);
+  // Обновление интерфейса
+  document.getElementById('result').innerHTML = 'Успешная отправка: ' + JSON.stringify(data);
+})
+.catch((error) => {
+  console.error('Ошибка:', error);
+  })

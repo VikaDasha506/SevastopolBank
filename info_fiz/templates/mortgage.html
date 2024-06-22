@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Ипотека{% endblock %}
+{% load static %}
+{% block head %}
+<style>
+.cont {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+</style>
+{% endblock %}
+
+{% comment %}{% endcomment %}
+
+{% block content %}
+<div class="container">
+   <h1 style="color:rgb(0, 66, 128);">Ипотека</h1>
+   <div class="cont">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{% static 'images/1_IEysVHcIg7aqgXVLi40PGw.jpeg' %}" class="img-fluid rounded-start" alt="..." style="margin-top:10px;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <a class="card-title" href="{% url 'info_fiz:government_support' %}" style="color:rgb(0, 66, 128);">Господдержка 2020</a>
+              <p class="card-text">Льготная ипотека на покупку квартиры в новостройке.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{% static 'images/d640f6374ced983276db0ffea254a584.png'%}" class="img-fluid rounded-start" style="margin-top:20px;" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <a class="card-title" href="{% url 'info_fiz:military_mortgage' %}" style="color:rgb(0, 66, 128);">Военная ипотека</a>
+              <p class="card-text">Кредиты для военнослужащих, являющихся участниками накопительно-ипотечной системы.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{% static 'images/f1.jpg' %}" class="img-fluid rounded-start" alt="..." style="margin-top:10px;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <a class="card-title" href="{% url 'info_fiz:it_mortgage' %}" style="color:rgb(0, 66, 128);">IT-ипотека</a>
+              <p class="card-text">Льготная ипотека для сотрудников IT-компаний.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{% static 'images/kvartira.png' %}" class="img-fluid rounded-start" alt="..." style="margin-top:20px;">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <a class="card-title" href="{% url 'info_fiz:family_mortgage' %}" style="color:rgb(0, 66, 128);">Семейная ипотека</a>
+              <p class="card-text">Ипотека с господдержкой по льготной ставке для семей с детьми.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+   </div>
+</div>
+<div class="container shadow p-3 mb-5 rounded-3 lh-1">
+    Узнать об ипотечных кредитах подробнее и ознакомиться с перечнем других продуктов и услуг Банка «РОССИЯ» можно в офисах Банка или по телефону круглосуточного контактного центра 8 800 000 00 00 (звонок по России бесплатный)
+
+</div>
+{% endblock %}

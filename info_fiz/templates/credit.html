@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Информация о кредитах{% endblock %}
+{% load static %}
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+</style>
+{% endblock %}
+
+{% comment %}{% endcomment %}
+{% block content %}
+<div class="container">
+   <h1 style="color:rgb(0, 66, 128)">Кредиты</h1>
+   <div class="container" style="display: grid;grid-template-columns: repeat(2, 1fr);gap: 1em;">
+      <div class="col-6"><img src="{% static 'images/photo.png' %}"  class="d-block" alt="..." style="height: 100px;width: 130px;" ><a href="{% url 'info_fiz:mortgage' %}" class="pe-auto" style="display: flex;color:rgb(0, 66, 128)">Ипотечный кредит</a>Ипотека на новостройки и вторичное жилье. <br>Льготная ипотека. Рефинансирование.</div>
+      <div class="col-6"><img src="{% static 'images/potrebitelskogo-kredita.png' %}"  class="d-block" alt="..." style="height: 100px;width: 140px;" ><a href="{% url 'info_fiz:consumer_credit' %}" class="pe-auto" style="display: flex;color:rgb(0, 66, 128)">Потребительский кредит</a>На любые цели, с залогом и без. <br>Рефинансирование.</div>
+      <div class="col-6"><img src="{% static 'images/5d65a16487eca59418391030781d765b.png' %}"  class="d-block" alt="..." style="height: 80px;width: 120px;" ><a href="{% url 'info_fiz:credit_card' %}" class="pe-auto" style="display: flex;color:rgb(0, 66, 128)">Кредитная карта</a>Карта с беспроцентным периодом до 180 дней.</div>
+      <div class="col-6"><img src="{% static 'images/image_processing20200713-19777-1ow3boi.png' %}"  class="d-block" alt="..." style="height: 90px;width: 100px;" ><a href="{% url 'info_fiz:credit_holidays' %}" class="pe-auto" style="display: flex;color:rgb(0, 66, 128)">Кредитные каникулы</a>Банк оказывает помощь заемщикам, попавшим в трудную жизненную ситуацию, путем предоставления льготного периода в рамках требований законодательства.</div>
+   </div>
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}

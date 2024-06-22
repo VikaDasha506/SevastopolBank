@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Эквайринг{% endblock %}
+{% load static %}
+
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+{% endblock %}
+
+{% comment %}{% endcomment %}
+
+{% block content %}
+<div class="container shadow p-3 mb-5 rounded-3 ">
+    <h5 class="display-4" style="color:rgb(0, 66, 128)"><strong>Эквайринг и СБП</strong></h5><br>
+   <i class="bi bi-clipboard-check"></i>Персональный менеджер<br>
+   <i class="bi bi-router"></i>Современные технологичные решения<br>
+   <i class="bi bi-hand-thumbs-up"></i>Индивидуальный подход к каждому клиенту<br>
+   <i class="bi bi-key"></i>Международные стандарты безопасности<br>
+   <i class="bi bi-stopwatch"></i>Круглосуточная техподдержка<hr>
+	<table class="raiting-table light-padding fw-light">
+			<tbody>
+			<tr>
+				<td width="40%" style="border-image: initial;">
+					<h5>QR для предпринимателей:</h5>
+				</td>
+				<td width="50%" style="border-image: initial;">
+                   <i class="bi bi-check-lg"></i>Банк «Первый Севастопольский» предлагает новую услугу для предпринимателей – прием платежей по QR-кодам через Систему быстрых платежей (СБП).<hr>
+				</td>
+			</tr>
+            <tr>
+				<td width="40%" style="border-image: initial;">
+					<h5>Платежный агрегатор:</h5>
+				</td>
+				<td width="50%" style="border-image: initial;"><br>
+                   <i class="bi bi-check-lg"></i>Услуга для банковских платежных агентов, позволяющая принимать участие в переводах и принимать от имени Банка электронные платежи от физических лиц<hr>
+				</td>
+			</tr>
+            <tr>
+				<td width="40%" style="border-image: initial;">
+					<h5>Цифровой POS-терминал:</h5>
+				</td>
+				<td width="50%" style="border-image: initial;"><br>
+                   <i class="bi bi-check-lg"></i>Цифровой POS-терминал (ссылка на оплату) позволяет в режиме 24/7 выставлять «счета» вашим покупателям и осуществлять расчеты в сети Интернет.<hr>
+				</td>
+			</tr>
+            <tr>
+				<td width="40%" style="border-image: initial;">
+					<h5>Торговый эквайринг:</h5>
+				</td>
+				<td width="50%" style="border-image: initial;"><br>
+                   <i class="bi bi-check-lg"></i>Банк предлагает клиентам самые современные способы расчетов с покупателями. Принимайте оплату по банковским картам. Без абонентской платы.<hr>
+				</td>
+			</tr>
+            <tr>
+				<td width="40%" style="border-image: initial;">
+					<h5>Интернет-эквайринг:</h5>
+				</td>
+				<td width="50%" style="border-image: initial;"><br>
+                   <i class="bi bi-check-lg"></i>Услуга, позволяющая торгово-сервисным предприятиям осуществлять расчеты с покупателями в сети Интернет.<hr>
+				</td>
+			</tr>
+			</tbody>
+	</table>
+<hr>
+
+</div>
+
+<div class="container shadow p-3 mb-5 rounded-3 lh-1">
+    Подробнее в офисах Банка «Первый Севастопольский» или по телефону круглосуточного контактного центра 8 800 000 00 00 (звонок по России бесплатный)
+</div>
+{% endblock %}
+{% block footer %}
+<div class="container bg-danger text-white rounded-3 shadow p-0 mb-2 text-center ">
+	<br>
+	<p class="text-dark fw-light"> © Банк «Первый Севастопольский» 2010 - 2024
+		<br>Генеральная лицензия Банка России № 000 от 01.01.2015 г.
+		<br>Вклады в Банке «Первый Севастопольский» застрахованы в
+	<a class="text-dark" href="https://www.asv.org.ru/banks">Государственной корпорации «Агентство по страхованию вкладов»</a></p> <br>
+</div>
+{% endblock %}

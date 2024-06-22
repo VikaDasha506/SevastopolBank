@@ -1,0 +1,75 @@
+{% extends "credit.html" %}
+{% block title %}Вклады{% endblock %}
+{% load static %}
+
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+{% endblock %}
+
+{% comment %}{% endcomment %}
+
+{% block content %}
+<div class="container shadow p-3 mb-5 rounded-3 ">
+    <h5 class="display-4" style="color:rgb(0, 66, 128)"><strong>Вклады</strong></h5><br>
+Банк «Первый Севастопольский» предлагает вкладчикам срочные вклады на выгодных условиях с привлекательными ставками и гибкими условиями размещения денежных средств
+<hr>
+	<table class="raiting-table light-padding fw-light">
+			<tbody>
+			<tr>
+				<td width="40%" style="border-image: initial;">
+					<h5><img src="{% static 'images/420920_romashki_nebo_stebli_1680x1050_(www.GetBg.net).jpg' %}" style="height: 120px;width: 150px;"> Настроение "ЛЕТО"</h5>
+				</td>
+				<td width="51%" style="border-image: initial;">
+                   <i class="bi bi-check-lg"></i>Доходность по вкладу - до 14,6% годовых;<br>
+                   <i class="bi bi-check-lg"></i>Сумма вклада - от 3000 рублей;<br>
+                   <i class="bi bi-check-lg"></i>Индивидуальные сроки размещения вклада - от 31 до 367 дней;<br>
+                   <i class="bi bi-check-lg"></i>Возможность пополнения для вкладов сроком от 101 дня.<hr>
+				</td>
+			</tr>
+			<tr>
+				<td width="40%" style="border-image: initial;">
+					<h5><img src="{% static 'images/95024b77d85c78e1d31e1a4f54eab90a83bb6186.jpg' %}" style="height: 120px;width: 150px;">" КЛАССИЧЕСКИЙ"</h5>
+				</td>
+				<td width="51%" style="border-image: initial;">
+                   <i class="bi bi-check-lg"></i>Доходность по вкладу - до 12,5% годовых;<br>
+                   <i class="bi bi-check-lg"></i>Сумма вклада - от 3000 рублей;<br>
+                   <i class="bi bi-check-lg"></i>Срок вклада от 2 до 5 лет;<br>
+                   <i class="bi bi-check-lg"></i>Возможность пополнения и капитализация процентов;<br>
+					<i class="bi bi-check-lg"></i>Возможна автопролонгация вклада.<hr>
+				</td>
+			</tr>
+
+			<tr>
+				<td width="40%" style="border-image: initial;">
+					<h5><img src="{% static 'images/60550253406ec_cube-2379851_1920.jpg' %}" style="height: 120px;width: 150px;"> Настроение "УНИВЕРСАЛЬНЫЙ"</h5>
+				</td>
+				<td width="51%" style="border-image: initial;">
+                   <i class="bi bi-check-lg"></i>Доходность по вкладу до 11,6% годовых;<br>
+                   <i class="bi bi-check-lg"></i>Сумма вклада - от 3000 рублей;<br>
+                   <i class="bi bi-check-lg"></i>Срок вклада - 181 или 367 дней;<br>
+                   <i class="bi bi-check-lg"></i>Возможность пополнения и частичного расходования;<br>
+					<i class="bi bi-check-lg"></i>Возможна автопролонгация вклада.<hr>
+				</td>
+			</tr>
+			</tbody>
+	</table>
+<hr>
+
+</div>
+
+<div class="container shadow p-3 mb-5 rounded-3 lh-1">
+    <img src="{% static 'images/tfpku8jd2dx652qq8c7valfaeophkvsz.png' %}" style="height: 70px;width: 80px;display: grid">Банк «Первый Севастопольский» включен в реестр банков - участников Системы обязательного страхования вкладов с регистрационным номером 000 от 11 января 2010 года.
+	<a class="text-dark" href="#">Узнать больше</a>
+
+</div>
+{% endblock %}
+{% block footer %}
+<div class="container bg-danger text-white rounded-3 shadow p-0 mb-2 text-center ">
+	<br>
+	<p class="text-dark fw-light"> © Банк «Первый Севастопольский» 2010 - 2024
+		<br>Генеральная лицензия Банка России № 000 от 01.01.2015 г.
+		<br>Вклады в Банке «Первый Севастопольский» застрахованы в
+	<a class="text-dark" href="https://www.asv.org.ru/banks">Государственной корпорации «Агентство по страхованию вкладов»</a></p> <br>
+</div>
+{% endblock %}

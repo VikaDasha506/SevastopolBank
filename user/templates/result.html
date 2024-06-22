@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Потребительский кредит{% endblock %}
+{% block head %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--подключили библиотеку jquery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% comment %}{% endcomment %}
+
+{% block content %}
+<div class="container">
+  <div id="results"></div>
+  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none">
+		<a class="text-white fs-6" style="text-decoration: none" href="{% url 'user:calculator' %}"><i class="bi bi-calculator"></i>Расчитать заново</a>
+	</span>
+  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none">
+		<a class="text-white fs-6" style="text-decoration: none" href="{%  url 'user:customer_loan_application' %}"><i class="bi bi-calculator"></i>Оформить заявку</a>
+	</span>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Извлекаем результаты из sessionStorage
+  var amount = sessionStorage.getItem('amount');
+  var term = sessionStorage.getItem('term');
+  var interestRate = sessionStorage.getItem('interestRate');
+  var monthlyPayment = sessionStorage.getItem('monthlyPayment');
+  var totalPayment = sessionStorage.getItem('totalPayment');
+  var totalInterest = sessionStorage.getItem('totalInterest');
+
+  // Формируем HTML для отображения результатов
+  var html = "<h2>Результат</h2>";
+  html += "<p>Сумма кредита: <span class='sum'>" + amount + "</span></p>";
+  html += "<p>Процентная ставка: <span class='sum'>" + interestRate + "%</span></p>";
+  html += "<p>Срок кредита: <span class='sum'>" + term + " месяцев</span></p>";
+  html += "<p>Ежемесячный платеж: <span class='sum'>" + monthlyPayment + " руб.</span></p>";
+  html += "<p>Общая сумма платежа: <span class='sum'>" + totalPayment + " руб.</span></p>";
+  html += "<p>Переплата: <span class='sum'>" + totalInterest + " руб.</span></p>";
+
+
+  var loanData = {
+      'amount': amount,
+      'term': term,
+      'interestRate': interestRate,
+      'monthlyPayment': monthlyPayment,
+      'totalPayment': totalPayment,
+      'totalInterest': totalInterest
+    };
+    // Отправляем данные на сервер с помощью AJAX
+
+    $.ajax({
+      url: '/user/save_loan_data/', // Укажите путь к вашему серверному скрипту
+      type: 'POST',
+      data: loanData,
+      success: function(response) {
+        // Обработка ответа от сервера
+        console.log(response);
+      },
+      error: function(error) {
+        // Обработка ошибок при отправке
+        console.error(error);
+      }
+    });
+
+    document.getElementById('results').innerHTML = html;
+
+    // Сохранение объекта данных в sessionStorage
+      sessionStorage.setItem('loanData', JSON.stringify(loanData));
+
+    // Извлечение объекта данных из sessionStorage
+    var retrievedLoanData = JSON.parse(sessionStorage.getItem('loanData'));
+
+
+
+});
+</script>
+{% endblock %}
+
