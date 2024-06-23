@@ -27,8 +27,8 @@ class ThanksForFeedback(TemplateView):
     template_name = 'feedback_thanks.html'
 
 
-#@csrf_protect
-@csrf_exempt
+@csrf_protect
+#@csrf_exempt
 def save_loan_data(request):
     if request.method == 'POST':
         # Получаем данные из запроса
