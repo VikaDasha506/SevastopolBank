@@ -31,7 +31,6 @@ def save_loan_data(request):
         monthly_payment = request.POST.get('monthlyPayment')
         total_payment = request.POST.get('totalPayment')
         total_interest = request.POST.get('totalInterest')
-
         # Создаем новый объект Loan и сохраняем данные
         loan = Loan(
             amount=amount,
@@ -42,7 +41,6 @@ def save_loan_data(request):
             total_interest=total_interest
         )
         loan.save()
-
         # Сохраняем ID расчета кредита в сессии
         request.session['loan_id'] = loan.id
 
