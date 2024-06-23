@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['vikadasha506-sevastopolbank-7614.twc1.net','*']
-CSRF_TRUSTED_ORIGINS = ['https://*.twc1.net', ...]
+CSRF_TRUSTED_ORIGINS = ['https://vikadasha506-sevastopolbank-7614.twc1.net', ...]
 CSRF_COOKIE_SECURE = True
 
 INTERNAL_IPS = [

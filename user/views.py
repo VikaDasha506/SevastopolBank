@@ -6,10 +6,9 @@ from django.views.generic import CreateView, TemplateView
 from django.views.decorators.csrf import csrf_protect
 
 
-@csrf_protect
 class FeedBack(CreateView):
     model = Feedback
-    form = FeedbackForm
+    # form = FeedbackForm
     template_name = 'feedback.html'
     redirect_field_name = 'next'
     success_url = reverse_lazy('user:thanks')
