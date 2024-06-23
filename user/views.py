@@ -12,7 +12,6 @@ class FeedBack(CreateView):
     success_url = reverse_lazy('user:thanks')
     fields = ['name', 'email', 'message']
 
-    #
     def form_valid(self, form):
         return super().form_valid(form)
 
