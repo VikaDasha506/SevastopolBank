@@ -33,7 +33,6 @@ h1 {
   <h1 style="color:rgb(0, 66, 128);">Кредитная заявка</h1>
   <form action="{% url 'user:customer_loan_application' %}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
     {% for field in form %}
         <div class="mb-3">
             {{ field.label_tag }}
