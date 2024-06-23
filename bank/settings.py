@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['vikadasha506-sevastopolbank-7614.twc1.net','*']
 
 INTERNAL_IPS = [
     '127.0.0.1',
-    'corsheaders',
 ]
 
 # Application definition
