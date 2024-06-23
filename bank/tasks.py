@@ -2,6 +2,7 @@ from celery import shared_task
 import requests
 from django.core.cache import cache
 
+
 @shared_task
 def fetch_exchange_rates():
     url = 'https://v6.exchangerate-api.com/v6/6e06364efafd152dd538f1b09c400e3b/latest/USD'
