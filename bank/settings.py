@@ -29,7 +29,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['vikadasha506-sevastopolbank-7614.twc1.net','*']
+CSRF_TRUSTED_ORIGINS = ['https://*.twc1.net', ...]
+CSRF_COOKIE_SECURE = True
 
 INTERNAL_IPS = [
     '127.0.0.1',
