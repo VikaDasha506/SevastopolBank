@@ -3,8 +3,7 @@ from .models import Feedback, Calculator, LoanApplication, Loan
 from .forms import LoanForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
-from django.views.decorators.csrf import csrf_protect
-from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect,csrf_exempt
 
 
 class FeedBack(CreateView):
@@ -19,16 +18,17 @@ class FeedBack(CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
-    @method_decorator(csrf_protect)
-    def dispatch(self, *args, **kwargs):
-        return super(FeedBack, self).dispatch(*args, **kwargs)
+    # @method_decorator(csrf_protect)
+    # def dispatch(self, *args, **kwargs):
+    #     return super(FeedBack, self).dispatch(*args, **kwargs)
 
 
 class ThanksForFeedback(TemplateView):
     template_name = 'feedback_thanks.html'
 
 
-@csrf_protect
+#@csrf_protect
+@csrf_exempt
 def save_loan_data(request):
     if request.method == 'POST':
         # Получаем данные из запроса
@@ -87,9 +87,9 @@ class CustomerLoanApplications(CreateView):
             form.add_error(None, 'Loan calculation not found')
             return self.form_invalid(form)
 
-    @method_decorator(csrf_protect)
-    def dispatch(self, *args, **kwargs):
-        return super(CustomerLoanApplications, self).dispatch(*args, **kwargs)
+    # @method_decorator(csrf_protect)
+    # def dispatch(self, *args, **kwargs):
+    #     return super(CustomerLoanApplications, self).dispatch(*args, **kwargs)
 
 
 class LoanApplicationSuccess(TemplateView):

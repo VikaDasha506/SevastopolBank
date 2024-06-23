@@ -20,6 +20,7 @@ h5 {
 {% block content %}
 {% csrf_token %}
 <div class="container">
+    {% csrf_token %}
   <div id="results"></div>
   <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none;">
 	  <a class="text-white fs-6" style="text-decoration: none" href="{% url 'user:calculator' %}"><i class="bi bi-calculator"></i>Расчитать заново</a>
