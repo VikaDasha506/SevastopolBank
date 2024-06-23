@@ -12,10 +12,18 @@ def fetch_exchange_rates():
         data = response.json()
         # Кешируем данные на 3 часа (10800 секунд)
         cache.set('exchange_rates', data, timeout=10800)
+        return data
     else:
         # Обработка ошибок или логирование
         print('Failed to fetch exchange rates')
+       # Получаем данные из кеша
+    exchange_rates = cache.get('exchange_rates')
 
+        # Проверяем, есть ли данные
+    if exchange_rates:
+        print(exchange_rates)
+    else:
+         print('Данные о курсах валют отсутствуют в кеше.')
 
 # python manage.py shell
 # from django.core.cache import cache
