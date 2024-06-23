@@ -6,32 +6,25 @@ from django.views.generic import CreateView, TemplateView
 from django.views.decorators.csrf import csrf_protect
 
 
-# Create your views here.
+@csrf_protect
 class FeedBack(CreateView):
-    model = Feedback  # Указываем модель, с которой работает представление
-    form = FeedbackForm  # Указываем класс формы обратной связи
-    template_name = 'feedback.html'  # Указываем шаблон, который будет использоваться для отображения формы
-    redirect_field_name = 'next'  # имя параметра запроса, в котором хранится URL-адрес, на который пользователь должен быть перенаправлен после успешного входа в систему.
-    success_url = reverse_lazy('user:thanks')  # URL для перенаправления после успешной отправки формы
+    model = Feedback
+    form = FeedbackForm
+    template_name = 'feedback.html'
+    redirect_field_name = 'next'
+    success_url = reverse_lazy('user:thanks')
     fields = ['name', 'email', 'message']
 
     #
     def form_valid(self, form):
-        # Метод, вызываемый при успешной валидации формы.
         return super().form_valid(form)
-
-    # def get_success_url(self):
-    #     if self.request.POST.get('next', '').strip():
-    #         return self.request.POST.get('next')
-    #     return reverse_lazy('user:thanks')
 
 
 class ThanksForFeedback(TemplateView):
-    """Представление для отображения страницы с сообщением об успешной отправке формы:"""
     template_name = 'feedback_thanks.html'
 
 
-@csrf_protect  # Отключаем CSRF для этого запроса для примера
+@csrf_protect
 def save_loan_data(request):
     if request.method == 'POST':
         # Получаем данные из запроса
@@ -68,7 +61,6 @@ class CustomerCreate(CreateView):
 
 
 class CustomerResult(TemplateView):
-    """Представление для отображения страницы с сообщением об успешной отправке формы:"""
     template_name = 'result.html'
 
 
@@ -85,7 +77,7 @@ class CustomerLoanApplications(CreateView):
         loan_id = self.request.session.get('loan_id')
         if loan_id:
             loan = Loan.objects.get(id=loan_id)
-            form.instance.customer = loan  # Связываем заявку с расчетом кредита
+            form.instance.customer = loan
             return super().form_valid(form)
         else:
             form.add_error(None, 'Loan calculation not found')
@@ -93,5 +85,4 @@ class CustomerLoanApplications(CreateView):
 
 
 class LoanApplicationSuccess(TemplateView):
-    """Представление для отображения страницы с сообщением об успешной отправке формы:"""
     template_name = 'loan_application_success.html'
