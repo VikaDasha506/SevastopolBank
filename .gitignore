@@ -1,4 +1,4 @@
-.venv
+venv
 .idea
 /db.sqlite3
 .vscode/
@@ -7,4 +7,4 @@ uploads/Модуль UML.pdf
 static/images/
 media/
 .env
-main.py
+main.py/
