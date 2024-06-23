@@ -2,12 +2,10 @@ from __future__ import absolute_import, unicode_literals
 import os
 from celery import Celery
 from celery.schedules import crontab
-import django
-django.setup()
+
 
 #Задаём настройки Django для Celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bank.settings')
-
 app = Celery('bank')
 
 #Используем конфигурации Django
@@ -28,3 +26,6 @@ app.conf.beat_schedule = {
         'schedule': crontab(minute=0, hour='*/3'),
     },
 }
+# Запустите Celery worker и beat:
+# celery -A bank worker --loglevel=info
+# celery -A bank beat --loglevel=info

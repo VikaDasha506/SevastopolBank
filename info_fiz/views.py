@@ -5,6 +5,8 @@ from django.views.generic import TemplateView
 import requests
 from bs4 import BeautifulSoup
 from django.core.cache import cache
+from django.views.generic import View
+from bank.tasks import fetch_exchange_rates
 
 
 # Create your views here.
@@ -94,10 +96,6 @@ def get_family_mortgage(request):
     return render(request, 'family_mortgage.html')
 
 
-from django.views.generic import View
-from bank.tasks import fetch_exchange_rates  # Убедитесь, что задача импортирована правильно
-
-
 class ExchangeRateView(View):
     template_name = 'currency.html'
 
@@ -115,7 +113,6 @@ class ExchangeRateView(View):
             context = {'exchange_rates': exchange_rates}
 
         return render(request, self.template_name, context)
-
 
 # def get_context_data(self, **kwargs):
 #     context = super().get_context_data(**kwargs)
