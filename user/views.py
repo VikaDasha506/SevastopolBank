@@ -63,7 +63,7 @@ class CustomerResult(TemplateView):
     template_name = 'result.html'
 
 
-@csrf_protect
+
 class CustomerLoanApplications(CreateView):
     model = LoanApplication
     template_name = 'loan_application.html'
