@@ -11,29 +11,28 @@
 
 {% block content %}
 <div class="container">
-<form action="{% url 'user:calculator' %}" method="post" id="loan-form">
+<form action="{% url 'user:calculator' %}" method="post" id="loan-form" >
 	{% csrf_token %}
-<h1 style="color:rgb(0, 66, 128);">Кредитный калькулятор</h1>
+       <h1 style="color:rgb(0, 66, 128);">Кредитный калькулятор</h1>
 <!-- Форма кредитного калькулятора -->
- <table class="raiting-table light-padding fw-light">
-     <tbody>
-		<tr>
-		  <td width="40%">
-			<p>Выберите продукт:</p>
-		  </td>
-          <td width="30%">
-            <select id="productSelect" class="Validate_Required form-text border border-2 rounded w-100 p-3"  name="productSelect" aria-required="true" onChange="Selected(this)" >
-              <option value="" selected="selected">Выберете продукт</option>
-              <option value="Потребительский кредит">Потребительский кредит</option>
-              <option value="Ипотека">Семейная ипотека</option>
-              <option value="Автокредит">Военная ипотека (с господдержкой)</option>
-              <option value="Ипотека">Ипотека с господдержкой</option>
-              <option value="Ипотека">IT-ипотека</option>
-            </select><br>
-		  </td>
-		</tr>
-	</tbody>
-    <tbody>
+    <table class="raiting-table light-padding fw-light">
+		<tbody>
+		  <tr>
+			<td width="40%"><p>Выберите продукт:</p>
+			</td>
+			<td width="30%" >
+				<select id="productSelect" class="Validate_Required form-text border border-2 rounded w-100 p-3"  name="productSelect" aria-required="true" onChange="Selected(this)" >
+					<option value="" selected="selected">Выберете продукт</option>
+					<option value="Потребительский кредит">Потребительский кредит</option>
+					<option value="Ипотека">Семейная ипотека</option>
+					<option value="Автокредит">Военная ипотека (с господдержкой)</option>
+					<option value="Ипотека">Ипотека с господдержкой</option>
+					<option value="Ипотека">IT-ипотека</option>
+				</select><br>
+			</td>
+		  </tr>
+		</tbody>
+		<tbody>
 		<tr>
 			<td width="40%" style="border-image: initial;" >
 				<p>Процентная ставка (%):</p>
@@ -42,29 +41,29 @@
 				<input class="border border-2 rounded rounded w-25 p-2" style="font-size: 14px;"  type="text" id="interest-rate">%
 			</td>
 		</tr>
-	</tbody>
-    <tbody>
-		<tr>
+		</tbody>
+		<tbody>
+		  <tr>
 			<td width="40%" style="border-image: initial;">
 				<p>Сумма кредита:</p>
 			</td>
 			<td width="30%" style="border-image: initial;">
-				<input class="border border-2 rounded w-50 p-2" style="font-size: 14px;"  type="text" id="loan-amount" placeholder="100 000 -5 000 000">
+				<input class="border border-2 rounded w-50 p-2" style="font-size: 14px;"  type="text" id="loan-amount" placeholder="100 000 -10 000 000">
 			</td>
-		</tr>
-	</tbody>
-    <tbody>
-		<tr>
+		  </tr>
+		</tbody>
+		<tbody>
+		  <tr>
 			<td width="40%" style="border-image: initial;">
 				<p>Срок кредита (в месяцах):</p>
 			</td>
 			<td width="51%" style="border-image: initial;">
-				<input class="border border-2 rounded rounded w-50 p-2" style="font-size: 14px;"  type="text" id="loan-term" placeholder="18-60">месяцев
+				<input class="border border-2 rounded rounded w-50 p-2" style="font-size: 14px;"  type="text" id="loan-term" placeholder="18-300">месяцев
 			</td>
-		</tr>
-	</tbody>
- </table>
-     <input class="border border-2 rounded"  type="submit" style="margin-left: 497px;" value="Рассчитать">
+		  </tr>
+	   </tbody>
+    </table>
+	<input class="border border-2 rounded"  type="submit" style="margin-left: 497px;" value="Рассчитать">
 </form>
 	><br>
 
@@ -115,9 +114,6 @@ function Selected(a) {
 
        // Перенаправляем на страницу result.html
        window.location.href = '{% url 'user:result' %}';
-
-
-
 </script>
 {% endblock %}
 

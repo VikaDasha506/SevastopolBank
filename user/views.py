@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Feedback, Calculator, LoanApplication, Loan
-from .forms import FeedbackForm
+from .forms import LoanForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 from django.views.decorators.csrf import csrf_protect

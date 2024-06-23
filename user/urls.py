@@ -12,4 +12,3 @@ urlpatterns = [
     path('customer/loan_applications/', (views.CustomerLoanApplications.as_view()), name='customer_loan_application'),
     path('customer/loan_application_success/', (views.LoanApplicationSuccess.as_view()), name='loan_application_success'),
 ]
-#<int:customer_id>/

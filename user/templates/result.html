@@ -1,23 +1,32 @@
 {% extends "base.html" %}
-{% block title %}Потребительский кредит{% endblock %}
+{% block title %}Результат{% endblock %}
 {% block head %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--подключили библиотеку jquery -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<style>
+h2 {
+    color:rgb(0, 66, 128);
+}
+h5 {
+    margin-bottom: 20px;
+}
+</style>
 {% endblock %}
 
 {% comment %}{% endcomment %}
 
 {% block content %}
+{% csrf_token %}
 <div class="container">
   <div id="results"></div>
-  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none">
-		<a class="text-white fs-6" style="text-decoration: none" href="{% url 'user:calculator' %}"><i class="bi bi-calculator"></i>Расчитать заново</a>
-	</span>
-  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none">
-		<a class="text-white fs-6" style="text-decoration: none" href="{%  url 'user:customer_loan_application' %}"><i class="bi bi-calculator"></i>Оформить заявку</a>
-	</span>
+  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none;">
+	  <a class="text-white fs-6" style="text-decoration: none" href="{% url 'user:calculator' %}"><i class="bi bi-calculator"></i>Расчитать заново</a>
+  </span>
+  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none;">
+	  <a class="text-white fs-6" style="text-decoration: none" href="{%  url 'user:customer_loan_application' %}"><i class="bi bi-calculator"></i>Оформить заявку</a>
+  </span>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 <script>
@@ -31,13 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
   var totalInterest = sessionStorage.getItem('totalInterest');
 
   // Формируем HTML для отображения результатов
-  var html = "<h2>Результат</h2>";
-  html += "<p>Сумма кредита: <span class='sum'>" + amount + "</span></p>";
-  html += "<p>Процентная ставка: <span class='sum'>" + interestRate + "%</span></p>";
-  html += "<p>Срок кредита: <span class='sum'>" + term + " месяцев</span></p>";
-  html += "<p>Ежемесячный платеж: <span class='sum'>" + monthlyPayment + " руб.</span></p>";
-  html += "<p>Общая сумма платежа: <span class='sum'>" + totalPayment + " руб.</span></p>";
-  html += "<p>Переплата: <span class='sum'>" + totalInterest + " руб.</span></p>";
+  var html = "<h2>Результат:</h2>";
+  html += "<h5>Сумма кредита: <span class='sum'>" + amount + "</span> рублей</h5>";
+  html += "<h5>Процентная ставка: <span class='sum'>" + interestRate + "% годовых</span></h5>";
+  html += "<h5>Срок кредита: <span class='sum'>" + term + " месяцев</span></h5>";
+  html += "<h5>Ежемесячный платеж: <span class='sum'>" + monthlyPayment + " рублей</span><h5>";
+  html += "<h5>Общая сумма платежа: <span class='sum'>" + totalPayment + " рублей</span></h5>";
+  html += "<h5>Переплата: <span class='sum'>" + totalInterest + " рублей</span></h5>";
 
 
   var loanData = {
@@ -49,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
       'totalInterest': totalInterest
     };
     // Отправляем данные на сервер с помощью AJAX
-
     $.ajax({
       url: '/user/save_loan_data/', // Укажите путь к вашему серверному скрипту
       type: 'POST',
