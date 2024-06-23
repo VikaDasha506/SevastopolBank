@@ -4,6 +4,7 @@ from .forms import LoanForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 from django.views.decorators.csrf import csrf_protect
+from django.utils.decorators import method_decorator
 
 
 class FeedBack(CreateView):
@@ -17,6 +18,10 @@ class FeedBack(CreateView):
     #
     def form_valid(self, form):
         return super().form_valid(form)
+
+    @method_decorator(csrf_protect)
+    def dispatch(self, *args, **kwargs):
+        return super(FeedBack, self).dispatch(*args, **kwargs)
 
 
 class ThanksForFeedback(TemplateView):
@@ -63,7 +68,6 @@ class CustomerResult(TemplateView):
     template_name = 'result.html'
 
 
-
 class CustomerLoanApplications(CreateView):
     model = LoanApplication
     template_name = 'loan_application.html'
@@ -82,6 +86,10 @@ class CustomerLoanApplications(CreateView):
         else:
             form.add_error(None, 'Loan calculation not found')
             return self.form_invalid(form)
+
+    @method_decorator(csrf_protect)
+    def dispatch(self, *args, **kwargs):
+        return super(CustomerLoanApplications, self).dispatch(*args, **kwargs)
 
 
 class LoanApplicationSuccess(TemplateView):
