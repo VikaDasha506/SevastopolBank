@@ -3,7 +3,7 @@ from .models import Feedback, Calculator, LoanApplication, Loan
 from .forms import FeedbackForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 
 
 # Create your views here.
@@ -31,7 +31,7 @@ class ThanksForFeedback(TemplateView):
     template_name = 'feedback_thanks.html'
 
 
-@csrf_exempt  # Отключаем CSRF для этого запроса для примера
+@csrf_protect  # Отключаем CSRF для этого запроса для примера
 def save_loan_data(request):
     if request.method == 'POST':
         # Получаем данные из запроса

@@ -95,7 +95,7 @@ def get_family_mortgage(request):
 
 
 from django.views.generic import View
-#from bank.tasks import fetch_exchange_rates  # Убедитесь, что задача импортирована правильно
+from bank.tasks import fetch_exchange_rates  # Убедитесь, что задача импортирована правильно
 
 
 class ExchangeRateView(View):
