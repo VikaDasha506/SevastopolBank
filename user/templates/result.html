@@ -8,9 +8,21 @@
 <style>
 h2 {
     color:rgb(0, 66, 128);
+    text-align: center;
+    margin-bottom: 40px;
 }
-h5 {
+h6 {
     margin-bottom: 20px;
+    margin: 20px;
+    color:rgb(53, 57, 61);
+}
+#results {
+margin: 0 auto;
+text-align: center;
+}
+.badge rounded-pill bg-danger{
+text-align: center;
+margin-left: 100px;
 }
 </style>
 {% endblock %}
@@ -19,17 +31,94 @@ h5 {
 
 {% block content %}
 <div class="container">
-    {% csrf_token %}
-  <div id="results"></div>
-  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none;">
-	  <a class="text-white fs-6" style="text-decoration: none" href="{% url 'user:calculator' %}"><i class="bi bi-calculator"></i>Расчитать заново</a>
-  </span>
-  <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none;">
-	  <a class="text-white fs-6" style="text-decoration: none" href="{%  url 'user:customer_loan_application' %}"><i class="bi bi-calculator"></i>Оформить заявку</a>
-  </span>
+    <form action="{% url 'user:result' %}" method="post">
+        {% csrf_token %}
+        <div id="results"></div>
+        <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none;margin-left: 420px;">
+            <a class="text-white fs-6" style="text-decoration: none" href="{% url 'user:calculator' %}">Расчитать заново</a>
+        </span>
+        <span class="badge rounded-pill bg-danger" style="width: 220px;height: 30px; text-decoration: none;">
+            <a class="text-white fs-6" style="text-decoration: none" href="{% url 'user:customer_loan_application' %}">Оформить заявку</a>
+        </span>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
 <script>
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+  // Извлекаем результаты из sessionStorage
+  var amount = sessionStorage.getItem('amount');
+  var term = sessionStorage.getItem('term');
+  var interestRate = sessionStorage.getItem('interestRate');
+  var monthlyPayment = sessionStorage.getItem('monthlyPayment');
+  var totalPayment = sessionStorage.getItem('totalPayment');
+  var totalInterest = sessionStorage.getItem('totalInterest');
+
+  // Формируем HTML для отображения результатов
+  var html = "<h2>Результат:</h2>";
+  html += "<h6>Сумма кредита: <span class='sum'>" + amount + "</span> рублей</h6>";
+  html += "<h6>Процентная ставка: <span class='sum'>" + interestRate + "% годовых</span></h6>";
+  html += "<h6>Срок кредита: <span class='sum'>" + term + " месяцев</span></h6>";
+  html += "<h6>Ежемесячный платеж: <span class='sum'>" + monthlyPayment + " рублей</span></h6>";
+  html += "<h6>Общая сумма платежа: <span class='sum'>" + totalPayment + " рублей</span></h6>";
+  html += "<h6>Переплата: <span class='sum'>" + totalInterest + " рублей</span></h6>";
+
+
+  var loanData = {
+      'amount': amount,
+      'term': term,
+      'interestRate': interestRate,
+      'monthlyPayment': monthlyPayment,
+      'totalPayment': totalPayment,
+      'totalInterest': totalInterest
+    };
+        // Отправляем данные на сервер
+        $.ajax({
+            url: '/user/save_loan_data/', // Укажите путь к вашему серверному скрипту
+            type: 'POST',
+            data: loanData,
+            headers: { "X-CSRFToken": getCookie('csrftoken') },
+            success: function(response) {
+                // Обработка ответа от сервера
+                console.log(response);
+            },
+            error: function(error) {
+                // Обработка ошибок при отправке
+                console.error(error);
+            }
+        });
+        document.getElementById('results').innerHTML = html;
+
+    // Сохранение объекта данных в sessionStorage
+      sessionStorage.setItem('loanData', JSON.stringify(loanData));
+
+    // Извлечение объекта данных из sessionStorage
+    var retrievedLoanData = JSON.parse(sessionStorage.getItem('loanData'));
+    });
+</script>
+{% endblock %}
+
+
+
+
+
+headers: {
+
+
 document.addEventListener('DOMContentLoaded', function() {
   // Извлекаем результаты из sessionStorage
   var amount = sessionStorage.getItem('amount');
@@ -41,12 +130,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Формируем HTML для отображения результатов
   var html = "<h2>Результат:</h2>";
-  html += "<h5>Сумма кредита: <span class='sum'>" + amount + "</span> рублей</h5>";
-  html += "<h5>Процентная ставка: <span class='sum'>" + interestRate + "% годовых</span></h5>";
-  html += "<h5>Срок кредита: <span class='sum'>" + term + " месяцев</span></h5>";
-  html += "<h5>Ежемесячный платеж: <span class='sum'>" + monthlyPayment + " рублей</span><h5>";
-  html += "<h5>Общая сумма платежа: <span class='sum'>" + totalPayment + " рублей</span></h5>";
-  html += "<h5>Переплата: <span class='sum'>" + totalInterest + " рублей</span></h5>";
+  html += "<h6>Сумма кредита: <span class='sum'>" + amount + "</span> рублей</h6>";
+  html += "<h6>Процентная ставка: <span class='sum'>" + interestRate + "% годовых</span></h6>";
+  html += "<h6>Срок кредита: <span class='sum'>" + term + " месяцев</span></h6>";
+  html += "<h6>Ежемесячный платеж: <span class='sum'>" + monthlyPayment + " рублей</span></h6>";
+  html += "<h6>Общая сумма платежа: <span class='sum'>" + totalPayment + " рублей</span></h6>";
+  html += "<h6>Переплата: <span class='sum'>" + totalInterest + " рублей</span></h6>";
 
 
   var loanData = {
@@ -57,6 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {
       'totalPayment': totalPayment,
       'totalInterest': totalInterest
     };
+
+
     // Отправляем данные на сервер с помощью AJAX
     $.ajax({
       url: '/user/save_loan_data/', // Укажите путь к вашему серверному скрипту
@@ -81,6 +172,3 @@ document.addEventListener('DOMContentLoaded', function() {
     var retrievedLoanData = JSON.parse(sessionStorage.getItem('loanData'));
 
 });
-</script>
-{% endblock %}
-

@@ -15,26 +15,19 @@ def fetch_exchange_rates():
         return data
     else:
         # Обработка ошибок или логирование
-        print('Failed to fetch exchange rates')
-       # Получаем данные из кеша
-    # exchange_rates = cache.get('exchange_rates')
-    #
-    #     # Проверяем, есть ли данные
-    # if exchange_rates:
-    #     print(exchange_rates)
-    # else:
-    #     print('Данные о курсах валют отсутствуют в кеше.')
+        print('Данные не доступны')
 
+
+# Проверяем загрузку данных в кеш
+# Запуск Django shell
 # python manage.py shell
-# from django.core.cache import cache
-#
-# # Получаем данные из кеша
-# exchange_rates = cache.get('exchange_rates')
-#
-# # Проверяем, есть ли данные
-# if exchange_rates:
-#     print(exchange_rates)
-# else:
-#     print('Данные о курсах валют отсутствуют в кеше.')
+
+# В Django shell
 # from bank.tasks import fetch_exchange_rates
-# fetch_exchange_rates()
+
+# Вызов функции и вывод результата
+# data = fetch_exchange_rates()
+# print(data)
+
+
+#  migrate && echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('Manina_A', 'anka506@rambler.ru', 'Manynya506')" | python3 manage.py shell

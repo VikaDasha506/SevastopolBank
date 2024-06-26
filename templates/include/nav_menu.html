@@ -44,8 +44,8 @@
                     data-bs-auto-close="true" aria-expanded="false">О банке
             </button>
             <ul class="dropdown-menu" aria-labelledby="defaultDropdown2" style="">
-                <li><a class="dropdown-item" href="#">История</a></li>
-                <li><a class="dropdown-item" href="#">Обратная связь</a></li>
+                <li><a class="dropdown-item" href="{% url 'history:about' %}">История</a></li>
+                <li><a class="dropdown-item" href="{% url 'user:feedback' %}">Обратная связь</a></li>
             </ul>
 
         </div>

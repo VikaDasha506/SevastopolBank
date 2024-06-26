@@ -105,14 +105,50 @@ class ExchangeRateView(View):
         if not exchange_rates:
             # Если данных нет, вызываем задачу для их получения
             fetch_exchange_rates.delay()
-            # Можно добавить сообщение пользователю о том, что данные обновляются
-            context = {
-                'message': 'Данные о курсах валют обновляются. Пожалуйста, обновите страницу через некоторое время.'}
+            context = {}
+            # Выводим сообщение о загрузке данных на консоль
+            print("Данные о курсах валют загружаются...")
         else:
             # Если данные есть, передаем их в контекст
             context = {'exchange_rates': exchange_rates}
+            # Выводим данные о курсах валют на консоль
+            print("Курсы валют из кеша:", exchange_rates)
 
         return render(request, self.template_name, context)
+
+# Запустите Django shell командой:
+#
+# python manage.py shell
+# Импортируйте модуль кеша:
+#
+# from django.core.cache import cache
+# Используйте функцию get для получения данных из кеша. Например, если вы хотите проверить данные для ключа 'exchange_rates':
+#
+# exchange_rates = cache.get('exchange_rates')
+# Проверьте, есть ли данные, и выведите их:
+#
+# if exchange_rates:
+#     print(exchange_rates)
+# else:
+#     print("Данные отсутствуют в кеше.")
+
+# class ExchangeRateView(View):
+#     template_name = 'currency.html'
+#
+#     def get(self, request, *args, **kwargs):
+#         # Проверяем, есть ли данные в кеше
+#         exchange_rates = cache.get('exchange_rates')
+#         if not exchange_rates:
+#             # Если данных нет, вызываем задачу для их получения
+#             fetch_exchange_rates.delay()
+#             # Можно добавить сообщение пользователю о том, что данные обновляются
+#             context = {
+#                 'message': 'Данные о курсах валют обновляются. Пожалуйста, обновите страницу через некоторое время.'}
+#         else:
+#             # Если данные есть, передаем их в контекст
+#             context = {'exchange_rates': exchange_rates}
+#
+#         return render(request, self.template_name, context)
 
 # def get_context_data(self, **kwargs):
 #     context = super().get_context_data(**kwargs)

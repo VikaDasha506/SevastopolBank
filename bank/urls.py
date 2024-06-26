@@ -28,4 +28,5 @@ urlpatterns = [
     path('fiz/', include('info_fiz.urls', namespace='fiz')),
     path('corp/', include('info_corp.urls', namespace='corp')),
     path('user/', include('user.urls', namespace='user')),
+    path('history/', include('history.urls', namespace='history')),
 ]

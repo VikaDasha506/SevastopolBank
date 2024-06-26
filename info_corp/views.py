@@ -7,13 +7,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 
-
-# <li><a class="dropdown-item" href="#">Зарплатный проект</a></li>
-#         <li><a class="dropdown-item" href="#">Эквайринг и СБП</a></li>
-#         <li><a class="dropdown-item" href="#">Расчетно-кассовое обслуживание (РКО)</a>
-#         <li><a class="dropdown-item" href="#">Кредитование</a></li>
-#         <li><a class="dropdown-item" href="#">Размещение денежных средств</a></li>
-# Create your views here.
 def get_salary_project(request):
     """Представление рендерит шаблон base.html"""
     return render(request, 'salary_project.html')

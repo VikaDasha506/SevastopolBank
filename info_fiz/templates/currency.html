@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title></title>
+    <meta charset="UTF-8">
+    <title>Курсы Валют</title>
 </head>
 <body>
-{% if exchange_rates %}
+    {% if exchange_rates %}
     <ul>
-        {% for currency, rate in exchange_rates.conversion_rates.items %}
+        {% for currency, rate in exchange_rates.items %}
             <li>{{ currency }}: {{ rate }}</li>
         {% endfor %}
     </ul>
-{% elif message %}
-    <p>{{ message }}</p>
 {% else %}
-    <p>Курсы валют недоступны.</p>
+    <p>Курсы валют в настоящее время недоступны.</p>
 {% endif %}
 </body>
 </html>

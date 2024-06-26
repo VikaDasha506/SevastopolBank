@@ -24,9 +24,9 @@
 				<select id="productSelect" class="Validate_Required form-text border border-2 rounded w-100 p-3"  name="productSelect" aria-required="true" onChange="Selected(this)" >
 					<option value="" selected="selected">Выберете продукт</option>
 					<option value="Потребительский кредит">Потребительский кредит</option>
-					<option value="Ипотека">Семейная ипотека</option>
-					<option value="Автокредит">Военная ипотека (с господдержкой)</option>
-					<option value="Ипотека">Ипотека с господдержкой</option>
+					<option value="Семейная ипотека">Семейная ипотека</option>
+					<option value="Военная ипотека (с господдержкой)">Военная ипотека (с господдержкой)</option>
+					<option value="Ипотека с господдержкой">Ипотека с господдержкой</option>
 					<option value="Ипотека">IT-ипотека</option>
 				</select><br>
 			</td>
@@ -74,13 +74,13 @@ function Selected(a) {
       var product = a.value;
       if (product === 'Потребительский кредит') {
         document.getElementById("interest-rate").value = 20;
-      } else if (product === 'Ипотека') {
+      } else if (product === 'Семейная ипотека') {
         document.getElementById("interest-rate").value = 6;
-      } else if (product === 'Автокредит') {
+      } else if (product === 'Военная ипотека (с господдержкой)') {
         document.getElementById("interest-rate").value = 8;
-      }else if (product === 'Автокредит') {
+      }else if (product === 'Ипотека с господдержкой') {
         document.getElementById("interest-rate").value = 8;
-      }else if (product === 'Автокредит') {
+      }else if (product === 'IT-ипотека') {
         document.getElementById("interest-rate").value = 5;
       }
     }

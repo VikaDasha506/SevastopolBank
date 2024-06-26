@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'info_corp',
     'bank',
     'user',
+    'history',
     # Cryspy forms
     'crispy_forms',
 
